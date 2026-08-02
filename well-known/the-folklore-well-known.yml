@@ -1,0 +1,23 @@
+generated: '2026-07-21'
+method: searched
+source: live probes of https://thefolklore.com/.well-known/*
+host: https://thefolklore.com
+documents:
+- path: /.well-known/openid-configuration
+  status: 200
+  file: the-folklore-openid-configuration.json
+  note: Shopify Customer Account OpenID Connect discovery (issuer shopify.com/authentication/63533449453)
+- path: /.well-known/oauth-authorization-server
+  status: 200
+  file: the-folklore-oauth-authorization-server.json
+  note: RFC 8414 OAuth authorization server metadata (mirrors the OIDC discovery)
+- path: /.well-known/ucp
+  status: 200
+  file: the-folklore-ucp.json
+  note: Universal Commerce Protocol (UCP) merchant profile — agent-driven commerce endpoints, capabilities, payment handlers
+- path: /.well-known/security.txt
+  status: 404
+- path: /.well-known/api-catalog
+  status: 404
+- path: /.well-known/ai-plugin.json
+  status: 404

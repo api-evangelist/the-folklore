@@ -1,0 +1,39 @@
+generated: '2026-07-21'
+method: searched
+source: https://thefolklore.com/agents.md
+note: >-
+  Cross-cutting conventions for interacting with The Folklore's Shopify
+  storefront and its UCP/MCP agent-commerce surface. Captured from the published
+  agents.md / llms.txt. Idempotency is not documented by the provider, so no
+  Idempotency contract is asserted.
+authentication:
+  style: OpenID Connect / OAuth 2.0 (Shopify Customer Account API)
+  ref: authentication/the-folklore-authentication.yml
+agent_commerce:
+  protocol: Universal Commerce Protocol (UCP)
+  mcp_endpoint: https://thefolklore.com/api/ucp/mcp
+  buyer_approval_required: true
+  buyer_approval_note: Agents must not complete payment without contemporaneous explicit buyer consent.
+  recommended_skill: https://shop.app/SKILL.md
+context_parameters:
+- name: context.address_country
+  purpose: Buyer country, for accurate pricing and availability.
+- name: context.currency
+  purpose: Buyer currency, for accurate pricing.
+rate_limiting:
+  scope: per-IP on the MCP endpoint
+  signal: HTTP 429
+  guidance: Back off on 429 responses.
+read_only_endpoints:
+- 'GET /collections/all — browse all products'
+- 'GET /products/{handle}.json — product JSON'
+- 'GET /collections/{handle}/products.json — collection products JSON'
+- 'GET /search?q={query}&type=product — product search'
+- 'GET /sitemap.xml — store sitemap'
+discovery:
+  llms_txt: https://thefolklore.com/llms.txt
+  agents_md: https://thefolklore.com/agents.md
+  ucp_profile: https://thefolklore.com/.well-known/ucp
+  agentic_sitemap: https://thefolklore.com/sitemap_agentic_discovery.xml
+error_handling:
+  ref: The UCP MCP transport returns JSON-RPC 2.0 errors (e.g. -32001 on failed agent-profile discovery).

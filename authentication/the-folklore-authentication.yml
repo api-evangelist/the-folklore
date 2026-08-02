@@ -1,0 +1,31 @@
+generated: '2026-07-21'
+method: searched
+source: https://thefolklore.com/.well-known/openid-configuration
+note: >-
+  Authentication is provided by the Shopify Customer Account API via OpenID
+  Connect / OAuth 2.0. Values transcribed verbatim from the store's live OIDC
+  discovery document. There is no first-party OpenAPI to derive from; the
+  customer-account-mcp-api:full scope gates the UCP MCP commerce surface.
+summary:
+  types: [openIdConnect, oauth2]
+  oauth2_flows: [authorizationCode]
+  grant_types: [authorization_code, refresh_token, 'urn:ietf:params:oauth:grant-type:jwt-bearer']
+  pkce: S256
+  token_endpoint_auth: client_secret_basic
+schemes:
+- name: shopifyCustomerAccountOIDC
+  type: openIdConnect
+  issuer: https://shopify.com/authentication/63533449453
+  openIdConnectUrl: https://thefolklore.com/.well-known/openid-configuration
+  authorization_endpoint: https://shopify.com/authentication/63533449453/oauth/authorize
+  token_endpoint: https://shopify.com/authentication/63533449453/oauth/token
+  end_session_endpoint: https://shopify.com/authentication/63533449453/logout
+  jwks_uri: https://shopify.com/authentication/63533449453/.well-known/jwks.json
+  id_token_signing_alg: RS256
+  code_challenge_methods: [S256]
+  response_types: [code]
+  scopes:
+  - openid
+  - email
+  - customer-account-api:full
+  - customer-account-mcp-api:full

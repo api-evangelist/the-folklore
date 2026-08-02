@@ -1,8 +1,28 @@
 aid: the-folklore
 name: The Folklore
-description: The Folklore is a company surfaced as a portfolio company of techstars and added to the API
-  Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  The Folklore is a commerce platform and B2B wholesale marketplace that helps
+  emerging and diverse consumer brands sell and market globally, connecting them
+  with retail buyers and shoppers through dropship, shipping, and commerce
+  technology. Its storefront runs on Shopify and exposes a modern agent-commerce
+  surface: a Universal Commerce Protocol (UCP) MCP endpoint for agent-driven
+  search, cart, checkout, and fulfillment, Shopify Customer Account OpenID
+  Connect authentication, and published /llms.txt and /agents.md instructions so
+  AI shopping agents can transact with buyer approval.
 url: https://raw.githubusercontent.com/api-evangelist/the-folklore/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://thefolklore.com/cdn/shop/files/TheFolklore_Logo_Marketplace_B1__digital_430x_cbbbe0ff-35cb-4e95-b54c-dd5a61ad01d2.webp?v=1733852909
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
@@ -11,10 +31,38 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
-apis: []
+- Commerce
+- Wholesale
+- Marketplace
+- Retail
+- E-commerce
+- Fashion
+- Agentic Commerce
+- Shopify
+apis:
+- name: The Folklore Commerce (UCP)
+  description: >-
+    Agent-driven commerce surface for The Folklore's Shopify storefront,
+    implementing the Universal Commerce Protocol over an MCP endpoint with
+    buyer-approved checkout, plus read-only storefront JSON endpoints.
+  humanURL: https://thefolklore.com/agents.md
+  baseURL: https://thefolklore.com/api/ucp/mcp
+  tags:
+  - Commerce
+  - Agentic Commerce
+  - MCP
+  properties:
+  - type: MCPServer
+    url: mcp/the-folklore-mcp.yml
+  - type: Authentication
+    url: authentication/the-folklore-authentication.yml
+  - type: OAuthScopes
+    url: scopes/the-folklore-scopes.yml
+  - type: Conventions
+    url: conventions/the-folklore-conventions.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -23,3 +71,42 @@ maintainers:
 common:
 - type: Website
   url: https://thefolklore.com/
+- type: Documentation
+  url: https://thefolklore.com/agents.md
+- type: Support
+  url: https://thefolklore.com/pages/faqs
+- type: Blog
+  url: https://thefolklore.com/blogs/my-folklore
+- type: Pricing
+  url: https://thefolklore.com/pages/pricing
+- type: SignUp
+  url: https://thefolklore.com/pages/join-us
+- type: Login
+  url: https://thefolklore.com/account/login
+- type: TermsOfService
+  url: https://thefolklore.com/policies/terms-of-service
+- type: PrivacyPolicy
+  url: https://thefolklore.com/policies/privacy-policy
+- type: LLMsTxt
+  url: llms/the-folklore-llms.txt
+- type: WellKnown
+  url: well-known/the-folklore-well-known.yml
+- type: MCPServer
+  url: mcp/the-folklore-mcp.yml
+- type: Authentication
+  url: authentication/the-folklore-authentication.yml
+- type: OAuthScopes
+  url: scopes/the-folklore-scopes.yml
+- type: Conformance
+  url: conformance/the-folklore-conformance.yml
+- type: Conventions
+  url: conventions/the-folklore-conventions.yml
+- type: DomainSecurity
+  url: security/the-folklore-domain-security.yml
+- type: AgentSkill
+  url: skills/_index.yml
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 13
+  pass: local-v1

@@ -1,0 +1,39 @@
+generated: '2026-07-21'
+method: searched
+source: >-
+  https://thefolklore.com/.well-known/openid-configuration,
+  https://thefolklore.com/.well-known/ucp,
+  https://thefolklore.com/agents.md
+note: >-
+  Standards conformance asserted from the store's live discovery surface. No
+  published security/compliance certification program (SOC 2 / ISO 27001 / PCI)
+  was found for The Folklore itself, so no Compliance pointer is emitted; PCI
+  handling is delegated to Shopify's payment handlers.
+standards:
+- id: openid-connect
+  conforms: true
+  evidence: /.well-known/openid-configuration advertises a full OIDC provider (Shopify Customer Account)
+- id: oauth2
+  conforms: true
+  evidence: authorization_code + refresh_token grants, RFC 8414 oauth-authorization-server metadata
+- id: oauth2-pkce
+  conforms: true
+  evidence: code_challenge_methods_supported = [S256]
+- id: rfc8414-oauth-metadata
+  conforms: true
+  evidence: /.well-known/oauth-authorization-server returns 200 with authorization server metadata
+- id: ucp
+  conforms: true
+  evidence: /.well-known/ucp advertises UCP 2026-04-08 dev.ucp.shopping services + capabilities
+- id: mcp
+  conforms: true
+  evidence: UCP MCP endpoint at POST /api/ucp/mcp (transport mcp)
+- id: llms-txt
+  conforms: true
+  evidence: /llms.txt published (text/markdown)
+- id: agents-md
+  conforms: true
+  evidence: /agents.md published as canonical agent-facing store description
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returns 404

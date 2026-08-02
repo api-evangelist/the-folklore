@@ -1,0 +1,61 @@
+generated: '2026-07-21'
+method: searched
+status: published
+source: https://thefolklore.com/.well-known/ucp
+docs: https://thefolklore.com/agents.md
+note: >-
+  The Folklore runs a Shopify storefront that implements the Universal Commerce
+  Protocol (UCP, https://ucp.dev) natively, exposing an MCP endpoint for
+  agent-driven commerce. Tools are the UCP "dev.ucp.shopping" service surface
+  documented in agents.md and advertised in the store's /.well-known/ucp profile.
+  A live tools/list call requires an agent profile URI handshake (returns
+  -32001 invalid_profile_url without one), so the tool list below is transcribed
+  from the published UCP capabilities and the agent flow in agents.md — not
+  fabricated.
+server:
+  name: the-folklore-ucp
+  transport: mcp
+  endpoint: https://thefolklore.com/api/ucp/mcp
+  aggregator_endpoint: https://thefolkloreaggregator.myshopify.com/api/ucp/mcp
+  protocol: Universal Commerce Protocol
+  supported_versions:
+  - '2026-04-08'
+  - '2026-01-23'
+  spec: https://ucp.dev/2026-04-08/specification/overview/
+  openrpc_schema: https://ucp.dev/2026-04-08/services/shopping/mcp.openrpc.json
+capabilities:
+- dev.ucp.shopping.catalog.search
+- dev.ucp.shopping.catalog.lookup
+- dev.ucp.shopping.cart
+- dev.ucp.shopping.checkout
+- dev.ucp.shopping.fulfillment
+- dev.ucp.shopping.discount
+- dev.ucp.shopping.order
+- dev.shopify.catalog
+payment_handlers:
+- com.google.pay
+- dev.shopify.card
+- dev.shopify.shop_pay
+tools:
+- name: search_catalog
+  description: Search the store catalog for products matching a buyer's intent.
+  capability: dev.ucp.shopping.catalog.search
+- name: catalog_lookup
+  description: Look up a specific product/variant by identifier.
+  capability: dev.ucp.shopping.catalog.lookup
+- name: create_cart
+  description: Create a cart and add desired items.
+  capability: dev.ucp.shopping.cart
+- name: create_checkout
+  description: Start the purchase flow from a cart.
+  capability: dev.ucp.shopping.checkout
+- name: update_checkout
+  description: Set shipping address and fulfillment method on a checkout.
+  capability: dev.ucp.shopping.fulfillment
+- name: complete_checkout
+  description: Finalize the purchase. Requires explicit buyer approval of payment.
+  capability: dev.ucp.shopping.checkout
+rules:
+- Checkout requires contemporaneous human/buyer approval of payment.
+- MCP endpoint is rate-limited per IP; back off on HTTP 429.
+- Pass context.address_country and context.currency for accurate pricing/availability.

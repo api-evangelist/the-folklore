@@ -1,0 +1,23 @@
+generated: '2026-07-21'
+method: searched
+source: https://thefolklore.com/agents.md
+note: >-
+  The Folklore publishes its own agent operating instructions at /agents.md
+  (mirrored at /llms.txt). Saved verbatim rather than generated. It covers the
+  UCP agent-commerce flow (search -> cart -> checkout -> fulfill -> complete)
+  grounded in the store's real MCP tools, plus read-only browsing and the
+  buyer-approval invariant.
+skills:
+- file: the-folklore-agents.md
+  name: The Folklore agent commerce (UCP)
+  description: How AI agents discover, browse, and transact on The Folklore's Shopify store via the Universal Commerce Protocol MCP endpoint, with buyer-approved checkout.
+  provider_published: true
+  source: https://thefolklore.com/agents.md
+  mcp: mcp/the-folklore-mcp.yml
+  operations:
+  - search_catalog
+  - catalog_lookup
+  - create_cart
+  - create_checkout
+  - update_checkout
+  - complete_checkout
